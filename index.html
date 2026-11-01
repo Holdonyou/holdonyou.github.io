@@ -1295,6 +1295,13 @@ function updateBgm() {
   if (bgmOn) bgm.play();
 }
 
+  document.getElementById('bgmBtn').addEventListener('click', (e) => {
+  bgmOn = !bgmOn;
+  if (bgmOn) { if (!bgm.src) updateBgm(); else bgm.play(); }
+  else bgm.pause();
+  e.target.textContent = bgmOn ? '♪ BGM [ON]' : '♪ BGM [OFF]';
+});
+  
 document.getElementById('bgmVolume').addEventListener('input', (e) => {
   bgm.volume = e.target.value / 100;
 });
