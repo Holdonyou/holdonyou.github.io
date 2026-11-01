@@ -1281,6 +1281,24 @@ const mirageToggle = document.getElementById('mirageToggle');
 const toggleLabel = document.getElementById('toggle-label');
 const hudModeText = document.getElementById('hud-mode-text');
 
+  const bgm = new Audio();
+bgm.loop = true;
+bgm.volume = 0.4;
+const bgmTracks = { ash: "bgm_ash.mp3", mirage: "bgm_mirage.mp3" };
+let bgmOn = false;
+
+function updateBgm() {
+  bgm.src = isMirage ? bgmTracks.mirage : bgmTracks.ash;
+  if (bgmOn) bgm.play();
+}
+
+document.getElementById('bgmBtn').addEventListener('click', (e) => {
+  bgmOn = !bgmOn;
+  if (bgmOn) { if (!bgm.src) updateBgm(); else bgm.play(); }
+  else bgm.pause();
+  e.target.textContent = bgmOn ? '♪ BGM [ON]' : '♪ BGM [OFF]';
+});
+  
 function renderZone() {
   const data = truckData[currentZone];
   const display = document.getElementById('zoneDisplay');
