@@ -869,6 +869,10 @@ html, body {
     <span id="toggle-label">신기루 관측 [OFF]</span>
   </button>
 </header>
+  <div id="bgmPanel" style="position:fixed; right:1rem; bottom:1rem; z-index:200; display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.9rem; border-radius:999px; border:1px solid var(--accent-primary); background:var(--bg-elevated);">
+  <button id="bgmBtn" style="background:none; border:none; color:var(--text-main); font-weight:600; font-size:0.8rem; cursor:pointer; white-space:nowrap;">♪ BGM [OFF]</button>
+  <input type="range" id="bgmVolume" min="0" max="100" value="40" style="width:80px; accent-color:var(--accent-primary);">
+</div>
 
 <main class="container">
   <!-- Hero Section -->
@@ -1280,6 +1284,28 @@ const mirageToggle = document.getElementById('mirageToggle');
 const toggleLabel = document.getElementById('toggle-label');
 const hudModeText = document.getElementById('hud-mode-text');
 
+  const bgm = new Audio();
+bgm.loop = true;
+bgm.volume = 0.4;
+const bgmTracks = { ash: "gvidon-spinning-head.mp3", mirage: "bgm_mirage.mp3" };
+let bgmOn = false;
+
+function updateBgm() {
+  bgm.src = isMirage ? bgmTracks.mirage : bgmTracks.ash;
+  if (bgmOn) bgm.play();
+}
+
+  document.getElementById('bgmBtn').addEventListener('click', (e) => {
+  bgmOn = !bgmOn;
+  if (bgmOn) { if (!bgm.src) updateBgm(); else bgm.play(); }
+  else bgm.pause();
+  e.target.textContent = bgmOn ? '♪ BGM [ON]' : '♪ BGM [OFF]';
+});
+  
+document.getElementById('bgmVolume').addEventListener('input', (e) => {
+  bgm.volume = e.target.value / 100;
+});
+  
 function renderZone() {
   const data = truckData[currentZone];
   const display = document.getElementById('zoneDisplay');
@@ -1350,8 +1376,9 @@ mirageToggle.addEventListener('click', () => {
     : 'TRUCK ENGINE: MOVING // ASH ZONE';
   renderZone();
   renderCharacter();
+  updateBgm();
 });
-
+  
 document.getElementById('truckZones').addEventListener('click', (e) => {
   const btn = e.target.closest('.zone-btn');
   if (!btn) return;
