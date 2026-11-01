@@ -1369,8 +1369,9 @@ mirageToggle.addEventListener('click', () => {
     : 'TRUCK ENGINE: MOVING // ASH ZONE';
   renderZone();
   renderCharacter();
+  updateBgm();
 });
-
+  
 document.getElementById('truckZones').addEventListener('click', (e) => {
   const btn = e.target.closest('.zone-btn');
   if (!btn) return;
