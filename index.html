@@ -422,6 +422,181 @@ html, body {
   color: #f87171;
 }
 
+/* Tactical Arsenal & Medkit Section (NEW) */
+.arsenal-section {
+  margin-bottom: 3.5rem;
+}
+
+.arsenal-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 720px) {
+  .arsenal-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.arsenal-tab {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.arsenal-tab.active {
+  background: rgba(224, 122, 56, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--text-main);
+}
+
+[data-mode="mirage"] .arsenal-tab.active {
+  background: rgba(0, 229, 255, 0.16);
+  box-shadow: var(--glow-effect);
+}
+
+.arsenal-viewer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+}
+
+@media (max-width: 780px) {
+  .arsenal-viewer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arsenal-blueprint-box {
+  position: relative;
+  min-height: 260px;
+  background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    #0e1013;
+  background-size: 20px 20px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+@media (max-width: 780px) {
+  .arsenal-blueprint-box {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.arsenal-svg-wrap {
+  width: 100%;
+  max-width: 280px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  filter: drop-shadow(0 0 10px rgba(224, 122, 56, 0.25));
+  transition: all 0.3s ease;
+}
+
+[data-mode="mirage"] .arsenal-svg-wrap {
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.45));
+}
+
+.arsenal-asset-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.arsenal-code-tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  z-index: 3;
+}
+
+.arsenal-owner-tag {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(15, 16, 20, 0.8);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  z-index: 3;
+}
+
+.arsenal-info {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.arsenal-bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.stat-bar-row {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.stat-bar-track {
+  height: 6px;
+  background: var(--bg-main);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+  border: 1px solid var(--border-color);
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: var(--accent-primary);
+  transition: width 0.4s ease;
+}
+
+.arsenal-synergy {
+  background: var(--bg-main);
+  border-left: 3px solid var(--accent-primary);
+  padding: 0.75rem 0.95rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.84rem;
+  color: var(--text-main);
+}
+
 /* Character Roster Section */
 .char-section {
   margin-bottom: 3.5rem;
@@ -961,6 +1136,48 @@ html, body {
     </div>
   </section>
 
+  <!-- Tactical Arsenal & Medkit Showcase (NEW) -->
+  <section class="arsenal-section">
+    <div class="section-label">02-B // TACTICAL ARSENAL & MEDKIT</div>
+    <h2 class="section-title">전투 무장 및 응급 처치 에셋</h2>
+    <div class="arsenal-tabs" id="arsenalTabs">
+      <button class="arsenal-tab active" data-gear="0">01. 카빈 소총</button>
+      <button class="arsenal-tab" data-gear="1">02. 전술 산탄총</button>
+      <button class="arsenal-tab" data-gear="2">03. 저격 소총</button>
+      <button class="arsenal-tab" data-gear="3">04. 응급 의료 키트</button>
+      <button class="arsenal-tab" data-gear="4">05. 섬광·호신 장비</button>
+    </div>
+
+    <div class="arsenal-viewer">
+      <div class="arsenal-blueprint-box">
+        <span class="arsenal-code-tag" id="gearCode">ASSET_01 // M4A1 CARBINE</span>
+        <img src="" alt="장비 에셋" class="arsenal-asset-img" id="gearImg" onerror="this.style.opacity='0'">
+        <div class="arsenal-svg-wrap" id="gearSvg"></div>
+        <span class="arsenal-owner-tag" id="gearOwner">담당: 레이프 (Leif)</span>
+      </div>
+
+      <div class="arsenal-info">
+        <div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.35rem;" id="gearTitle">개조 카빈 소총 (M4류)</h3>
+          <p style="font-size:0.88rem; color:var(--text-muted);" id="gearDesc"></p>
+
+          <div class="arsenal-bars">
+            <div class="stat-bar-row">
+              <span id="statName1">화력 / 저지력</span>
+              <div class="stat-bar-track"><div class="stat-bar-fill" id="statFill1" style="width:85%;"></div></div>
+            </div>
+            <div class="stat-bar-row">
+              <span id="statName2">유효 사거리 / 정밀도</span>
+              <div class="stat-bar-track"><div class="stat-bar-fill" id="statFill2" style="width:75%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="arsenal-synergy" id="gearSynergy"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Character Roster -->
   <section class="char-section">
     <div class="section-label">03 // SURVIVOR DOSSIERS</div>
@@ -1086,7 +1303,7 @@ html, body {
 </main>
 
 <script>
-// 1. 트럭 구역 데이터 (리부트 설정 반영)
+// 1. 트럭 구역 데이터
 const truckData = {
   cab: {
     name: "01. 운전석 · 조수석 (CABIN)",
@@ -1114,7 +1331,104 @@ const truckData = {
   }
 };
 
-// 2. 캐릭터 데이터 (신규 프롬프트 완벽 반영)
+// 2. 무기고 & 응급 키트 데이터 (SVG 도면 포함)
+const arsenalData = [
+  {
+    code: "ASSET_01 // M4A1 CARBINE",
+    owner: "담당: 레이프 (Leif)",
+    img: "arsenal_1.webp",
+    title: "전술 카빈 소총 (M4류) & 전술 라이트",
+    desc: "전직 군 지휘관인 레이프의 주무장입니다. 중근거리에서 몰려오는 약개체 무리를 제압하고 대열의 선두를 뚫는 데 최적화되어 있으며, 총열 하단의 강한 전술 라이트로 야간 괴물들의 시야를 일시적으로 위축시킵니다.",
+    stat1Name: "중근거리 화력", stat1Val: 85,
+    stat2Name: "기동성 · 연사력", stat2Val: 90,
+    synergy: "⚡ [합동기 & 교전] 루네가 트럭이나 산탄총으로 적진을 흔들면 레이프가 즉각 사격으로 엄호하며, 루카스가 응급처치를 할 때 든든한 방패 역할을 맡습니다.",
+    svg: `<svg viewBox="0 0 260 110" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="15" y="42" width="45" height="22" rx="2"/>
+      <line x1="60" y1="48" x2="175" y2="48"/>
+      <rect x="60" y="38" width="85" height="18" rx="2"/>
+      <rect x="85" y="26" width="32" height="12" rx="1"/>
+      <path d="M95 56 L88 86 L104 86 L108 56 Z"/>
+      <path d="M62 56 L55 76 L66 76 L70 56 Z"/>
+      <line x1="145" y1="45" x2="235" y2="45" stroke-width="3"/>
+      <rect x="155" y="50" width="24" height="8" rx="1"/>
+      <line x1="235" y1="41" x2="245" y2="49"/>
+    </svg>`
+  },
+  {
+    code: "ASSET_02 // TACTICAL SHOTGUN",
+    owner: "담당: 루네 (Rune)",
+    img: "arsenal_2.webp",
+    title: "대구경 산탄총 & 개조 화물트럭 범퍼",
+    desc: "루네가 근접전에서 애용하는 펌프액션 산탄총입니다. 트럭에 달라붙는 괴물이나 단독으로 돌진해 오는 강개체를 영거리에서 날려버리는 파괴력을 자랑하지만, 장전 틈이 길어 동료의 백업이 필수입니다.",
+    stat1Name: "근접 저지력 · 파괴력", stat1Val: 98,
+    stat2Name: "장탄수 · 사거리", stat2Val: 40,
+    synergy: "⚡ [합동기 & 교전] 트럭 엔진 소음과 헤드라이트로 괴물을 위축시킨 뒤 그대로 돌진하거나, 레이프의 엄호 사격 아래 근거리 결정타를 꽂아 넣습니다.",
+    svg: `<svg viewBox="0 0 260 110" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 58 L55 46 L55 62 L18 70 Z"/>
+      <rect x="55" y="42" width="65" height="16" rx="2"/>
+      <line x1="120" y1="46" x2="235" y2="46" stroke-width="3.5"/>
+      <line x1="120" y1="53" x2="220" y2="53" stroke-width="2"/>
+      <rect x="135" y="50" width="45" height="9" rx="2" fill="currentColor" fill-opacity="0.2"/>
+    </svg>`
+  },
+  {
+    code: "ASSET_03 // BOLT-ACTION RIFLE",
+    owner: "담당: 카스퍼 (Kasper)",
+    img: "arsenal_3.webp",
+    title: "고배율 스코프 볼트액션 저격소총",
+    desc: "트럭 지붕이나 엄폐물 뒤에서 카스퍼가 다루는 정밀 저격총입니다. 괴물의 유일한 급소인 '머리'를 원거리에서 정확히 꿰뚫어, 아군에게 접근하기도 전에 위협적인 변종 개체를 제거합니다.",
+    stat1Name: "급소 정밀 타격", stat1Val: 96,
+    stat2Name: "연사 속도", stat2Val: 35,
+    synergy: "⚡ [합동기 & 교전] 프레이가 섬광이나 조명으로 어둠 속 괴물의 시야를 묶고 위치를 드러내면, 카스퍼가 한 치의 오차도 없이 급소를 저격합니다.",
+    svg: `<svg viewBox="0 0 260 110" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10 56 L60 46 L140 46 L140 58 L60 58 L12 68 Z"/>
+      <rect x="75" y="28" width="55" height="10" rx="2"/>
+      <line x1="88" y1="38" x2="88" y2="46"/>
+      <line x1="115" y1="38" x2="115" y2="46"/>
+      <line x1="140" y1="49" x2="248" y2="49" stroke-width="2.5"/>
+      <line x1="185" y1="55" x2="198" y2="82"/>
+      <line x1="185" y1="55" x2="172" y2="82"/>
+    </svg>`
+  },
+  {
+    code: "ASSET_04 // FIELD TRAUMA KIT",
+    owner: "담당: 루카스 (Lukas)",
+    img: "arsenal_4.webp",
+    title: "야전 응급 처치 키트 & 조제 약품 가방",
+    desc: "루카스가 언제나 손목에 끈을 감고 다니는 의료 가방입니다. 소독약, 봉합 도구, 압박 붕대, 직접 조제한 진통제와 항생제가 정갈하게 들어 있으며, 호신용 권총 한 자루가 함께 수납되어 있습니다.",
+    stat1Name: "부상 처치 · 생존 유지", stat1Val: 95,
+    stat2Name: "밀착 · 스킨십 유발도", stat2Val: 100,
+    synergy: "🩹 [전투 후 숨고르기] 모든 교전이 끝난 직후, 좁은 거주칸에서 피 묻은 옷을 걷어내고 소독약과 붕대로 상처를 감싸며 가장 짙은 체온과 텐션이 오가는 핵심 매개체입니다.",
+    svg: `<svg viewBox="0 0 260 110" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="65" y="25" width="130" height="68" rx="8"/>
+      <path d="M105 25 L105 14 L155 14 L155 25"/>
+      <line x1="130" y1="42" x2="130" y2="76" stroke-width="4"/>
+      <line x1="113" y1="59" x2="147" y2="59" stroke-width="4"/>
+    </svg>`
+  },
+  {
+    code: "ASSET_05 // FLASH & COMMS RIG",
+    owner: "담당: 프레이 (Frey)",
+    img: "arsenal_5.webp",
+    title: "고출력 섬광 장치 · 무전기 및 호신용 권총",
+    desc: "전면전을 피하는 프레이가 개조한 고출력 섬광 투광기와 통신 단말기, 그리고 최소한의 호신용 저화력 권총입니다. 강한 빛에 위축되는 괴물의 습성을 역이용해 일행의 퇴로를 엽니다.",
+    stat1Name: "시야 교란 · 전자전", stat1Val: 92,
+    stat2Name: "직접 살상력", stat2Val: 30,
+    synergy: "⚡ [합동기 & 교전] 안개나 야간 습격 시 강한 섬광을 터뜨려 괴물 무리를 경직시키고, 카스퍼의 저격 각도나 루네의 트럭 돌파 경로를 열어줍니다.",
+    svg: `<svg viewBox="0 0 260 110" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="55" y="30" width="55" height="60" rx="5"/>
+      <line x1="70" y1="30" x2="70" y2="12" stroke-width="3"/>
+      <circle cx="82" cy="58" r="12"/>
+      <circle cx="175" cy="55" r="22" stroke-dasharray="4 3"/>
+      <line x1="175" y1="22" x2="175" y2="10"/>
+      <line x1="208" y1="55" x2="220" y2="55"/>
+      <line x1="198" y1="32" x2="208" y2="22"/>
+      <line x1="198" y1="78" x2="208" y2="88"/>
+    </svg>`
+  }
+];
+
+// 3. 캐릭터 데이터
 const charData = [
   {
     code: "01",
@@ -1258,7 +1572,7 @@ const charData = [
   }
 ];
 
-// 3. 화물칸 일상 기록 데이터 (프롬프트 말투 규칙: 프레이 반존대 등 반영)
+// 4. 화물칸 일상 기록 데이터
 const dailyLogs = [
   {
     title: "LOG #01 // 주간 실내 온도 및 소독 분쟁",
@@ -1328,6 +1642,7 @@ let currentCharIdx = 0;
 let currentStageIdx = 0;
 let currentLogIdx = 0;
 let currentZone = 'cab';
+let currentGearIdx = 0;
 
 // DOM Elements
 const htmlEl = document.documentElement;
@@ -1370,6 +1685,24 @@ function renderZone() {
     </div>
     ${isMirage ? `<div style="margin-top:0.85rem; padding-top:0.65rem; border-top:1px dashed var(--accent-primary); font-size:0.86rem; color:var(--accent-primary);">${data.mirage}</div>` : ''}
   `;
+}
+
+function renderArsenal() {
+  const g = arsenalData[currentGearIdx];
+  document.getElementById('gearCode').textContent = g.code;
+  document.getElementById('gearOwner').textContent = g.owner;
+  document.getElementById('gearTitle').textContent = g.title;
+  document.getElementById('gearDesc').textContent = g.desc;
+  document.getElementById('statName1').textContent = `${g.stat1Name} (${g.stat1Val}%)`;
+  document.getElementById('statFill1').style.width = `${g.stat1Val}%`;
+  document.getElementById('statName2').textContent = `${g.stat2Name} (${g.stat2Val}%)`;
+  document.getElementById('statFill2').style.width = `${g.stat2Val}%`;
+  document.getElementById('gearSynergy').textContent = g.synergy;
+  document.getElementById('gearSvg').innerHTML = g.svg;
+
+  const gearImg = document.getElementById('gearImg');
+  gearImg.style.opacity = '1';
+  gearImg.src = g.img;
 }
 
 function renderCharacter() {
@@ -1438,6 +1771,15 @@ document.getElementById('truckZones').addEventListener('click', (e) => {
   btn.classList.add('active');
   currentZone = btn.dataset.zone;
   renderZone();
+});
+
+document.getElementById('arsenalTabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.arsenal-tab');
+  if (!btn) return;
+  document.querySelectorAll('.arsenal-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentGearIdx = parseInt(btn.dataset.gear, 10);
+  renderArsenal();
 });
 
 document.getElementById('charTabs').addEventListener('click', (e) => {
@@ -1527,6 +1869,7 @@ function animateParticles() {
 }
 
 renderZone();
+renderArsenal();
 renderCharacter();
 renderLogs();
 animateParticles();
