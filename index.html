@@ -2458,4 +2458,21 @@ function animateParticles() {
       if (p.y < 0) p.y = canvas.height;
       ctx.fillStyle = `hsla(${p.hue}, 100%, 68%, 0.55)`;
       ctx.shadowBlur = 8;
-      ctx.shadowColor = `hsla(${p.hue}, 10
+      ctx.shadowColor = `hsla(${p.hue}, 100%, 65%, 0.75)`;
+      ctx.arc(p.x, p.y, p.r * 1.25, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+
+renderZone();
+renderArsenal();
+renderCharacter();
+renderLogs();
+renderArchetype();
+animateParticles();
+</script>
+</body>
+</html>
